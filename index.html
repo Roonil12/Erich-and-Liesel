@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erich & Liesel's Wedding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #4A4A4A;
+        }
+        header {
+            background-color: #E6E8E6;
+            color: #4A4A4A;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #5B8B7F;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .timeline, .info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .timeline div, .info div {
+            flex: 1;
+            margin: 10px;
+            padding: 10px;
+            background-color: #E6E8E6;
+            border-radius: 4px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input, form select, form button {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+        }
+        .map {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Erich Weber & Liesel Vosloo's Wedding</h1>
+        <p>Join us for our special day!</p>
+    </header>
+
+    <section>
+        <h2>RSVP</h2>
+        <!-- Form to collect RSVP responses -->
+        <form action="/submit-rsvp" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <select name="attendance" required>
+                <option value="">Will you attend?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <input type="text" name="diet" placeholder="Special Dietary Needs">
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Location</h2>
+        <p>The wedding will take place at:</p>
+        <p><strong>Beautiful Venue</strong><br>123 Wedding Lane<br>City, State, ZIP</p>
+        <!-- Google Maps integration -->
+        <div id="map" class="map"></div>
+    </section>
+
+    <section>
+        <h2>Event Timeline</h2>
+        <div class="timeline">
+            <div>
+                <h3>Ceremony</h3>
+                <p>2:00 PM - 3:00 PM</p>
+                <p>Main Hall</p>
+            </div>
+            <div>
+                <h3>Reception</h3>
+                <p>4:00 PM - 8:00 PM</p>
+                <p>Banquet Hall</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Important Information</h2>
+        <div class="info">
+            <div>
+                <h3>Dress Code</h3>
+                <p>Formal Attire</p>
+            </div>
+            <div>
+                <h3>Gifts</h3>
+                <p>No gifts, please. Your presence is our gift.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Other Details</h2>
+        <p>We are so excited to celebrate our special day with you. Please make sure to RSVP by [Date]. If you have any questions, feel free to contact us at [email] or [phone number].</p>
+    </section>
+
+    <script>
+        function initMap() {
+            var location = {lat: -25.344, lng: 131.036};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+    <!-- Replace YOUR_API_KEY with your actual API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>
